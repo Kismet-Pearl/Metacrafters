@@ -42,8 +42,6 @@ function getTotalSupply() {
     return nftCollection.length;
 }
 
-// Call your functions below this line
-
 // Mint a few NFTs
 mintNFT("Epic Dragon", "Red", "Leather Armor", "Golden Necklace");
 mintNFT("Mystic Elf", "Green", "Silk Robe", "Silver Ring");
