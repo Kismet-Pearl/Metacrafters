@@ -1,0 +1,50 @@
+// SPDX-License-Identifier: MIT
+pragma solidity ^0.8.0;
+
+contract MyToken {
+    // Public variables for token details
+    string public name;
+    string public symbol;
+    uint256 public totalSupply;
+
+    // Mapping to track balances of addresses
+    mapping(address => uint256) public balanceOf;
+
+    // Constructor to initialize token details and assign all tokens to the contract creator
+    constructor(string memory _name, string memory _symbol, uint256 _totalSupply) {
+        name = _name;
+        symbol = _symbol;
+        totalSupply = _totalSupply;
+        balanceOf[msg.sender] = _totalSupply; // Initially assign all tokens to the contract creator
+    }
+
+    // Function to mint (create) new tokens and assign them to a specific address
+    function mint(address account, uint256 amount) public {
+        require(account != address(0), "ERC20: mint to the zero address");
+
+        totalSupply += amount; // Increase the total supply
+        balanceOf[account] += amount; // Increase the balance of the specified account
+    }
+
+    // Function to burn (destroy) existing tokens from a specific address
+    function burn(address account, uint256 amount) public {
+        require(account != address(0), "ERC20: burn from the zero address");
+        require(balanceOf[account] >= amount, "ERC20: burn amount exceeds balance");
+
+        totalSupply -= amount; // Decrease the total supply
+        balanceOf[account] -= amount; // Decrease the balance of the specified account
+    }
+
+    /**
+     * @dev A script to initialize the contract with initial token details and supply.
+     * @param _name The name of the token.
+     * @param _symbol The symbol of the token.
+     * @param _totalSupply The total supply of the token.
+     */
+    function initializeToken(string memory _name, string memory _symbol, uint256 _totalSupply) external {
+        name = _name;
+        symbol = _symbol;
+        totalSupply = _totalSupply;
+        balanceOf[msg.sender] = _totalSupply; // Assign all tokens to the contract creator
+    }
+}
