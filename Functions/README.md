@@ -20,7 +20,3 @@ The frontend application connects to the smart contract using Web3.js and allows
 2. Deploy the smart contract using a local blockchain (e.g., Ganache).
 3. Update the contract address and ABI in the frontend application.
 4. Open the `index.html` file in your browser.
-
-## Video Walk-Through
-
-[Link to video walk-through](#)
